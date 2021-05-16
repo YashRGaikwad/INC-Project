@@ -1,0 +1,122 @@
+drop table authorsISBN;
+drop table books;
+drop table publishers;
+drop table authors;
+drop table users;
+drop table students;
+drop table book_requests;
+
+
+
+create table users(
+	UserID int primary key generated always as identity,
+	Uname varchar (30) NOT NULL,
+	Name varchar (30) NOT NULL,
+	Email varchar (30) NOT NULL,
+	pass varchar (200) NOT NULL,
+	phone varchar(30) NOT NULL
+	)
+;
+
+create table students(
+	UserID int primary key generated always as identity,
+	Uname varchar (30) NOT NULL,
+	Name varchar (30) NOT NULL,
+	Email varchar (30) NOT NULL,
+	College varchar(5) NOT NULL,
+	pass varchar (200) NOT NULL,
+	phone varchar(30) NOT NULL
+	)
+;
+
+create table publishers (
+	publisherID int primary key generated always as identity,
+	publisherName varchar (30) NOT NULL)
+;
+
+
+create table authors (
+	authorID int primary key generated always as identity,
+	firstName varchar (20) NOT NULL,
+	lastName varchar (30) NOT NULL)
+;
+
+
+create table books(
+	booksID int primary key generated always as identity,
+	isbn varchar (20) UNIQUE,
+	title varchar (100) NOT NULL,
+	publisherID int NOT NULL,
+	genre varchar(30) NOT NULL,
+	authorID int NOT NULL,
+	constraint fk_books_pub foreign key (publisherID)
+		references publishers (publisherID) ON DELETE CASCADE,
+	constraint fk_books_auth foreign key (authorID)
+		references authors (authorID) ON DELETE CASCADE
+) 
+;
+
+create table authorISBN (
+	authorID int NOT NULL,
+	isbn varchar (20) NOT NULL,
+	constraint fk_authorISBN_1 foreign key (authorID)
+		references authors (authorID) ON DELETE CASCADE, 
+	constraint fk_authorISBN_2 foreign key (isbn)
+		references books(isbn) ON DELETE CASCADE
+) 
+;
+
+create table book_requests(
+	ID int primary key generated always as identity,
+	studentID int NOT NULL,
+	isbn varchar (20) UNIQUE,
+	title varchar (100) NOT NULL,
+	genre varchar(30) NOT NULL,
+	constraint fk_booksreq_studentId foreign key (studentID)
+		references students (userID) ON DELETE CASCADE
+) 
+;
+
+CREATE Table Issue_Books (
+  IssueBooksID int primary key generated always as identity,
+  ISBN varchar(20) NOT NULL,
+  ID int NOT NULL,
+  Issue_date date NOT NULL,
+  CONSTRAINT IB_ISBN FOREIGN KEY (ISBN) references Books(ISBN),
+  CONSTRAINT IB_ID FOREIGN KEY (ID) references Students(UserID)
+);
+
+
+
+Insert into users (Uname,Name,email,pass,phone) values('admin','Yash','admin@admin.com','wpZTnzKGqJnYs/ZjL9YidA==','0501234567');
+
+
+Insert into students(Uname,Name,email,college,pass,phone) values('Leo','Lionel Messi','b00012345@aus.edu','CEN','D3Wd0epsTHbO3CmQOcpPIw==','0508623567');
+Insert into students(Uname,Name,email,college,pass,phone) values('Ronaldo','Cristiano Ronaldo','b00023456@aus.edu','CAAD','xaoxJLGtrQgJJ85NFExrMw==','0559123456');
+
+Insert into publishers (publisherName) values ('Yearling');
+Insert into publishers (publisherName) values ('CRC Press');
+Insert into publishers (publisherName) values ('Univ of South Carolina Press');
+Insert into publishers (publisherName) values ('Oxford University Press');
+Insert into publishers (publisherName) values ('John Wiley & Sons');
+
+
+Insert into authors (firstName,lastName) values ('Wendelin','Van Draanen');
+Insert into authors (firstName,lastName) values ('Jessica','Keyes');
+Insert into authors (firstName,lastName) values ('James','Dickey');
+Insert into authors (firstName,lastName) values ('Katherine','M. Kayes');
+Insert into authors (firstName,lastName) values ('Sara','Stinson');
+Insert into authors (firstName,lastName) values ('Margie','E.Lachman');
+
+Insert into books (isbn,title,publisherID,genre,authorID) values ('123456789','Sammy Keyes and the Art of Deception',1 , 'Juveline Fiction',1);
+Insert into books (isbn,title,publisherID,genre,authorID) values ('234567891','Bring Your Own Devices (BYOD) Survival Guide',2 , 'Business & Economics', 2);
+Insert into books (isbn,title,publisherID,genre,authorID) values ('345678912','The CIO''s Guide to Oracle Products and Solutions',2 , 'Business & Economics', 2);
+Insert into books (isbn,title,publisherID,genre,authorID) values ('456789123','Implementing the IT Balanced Scorecard',2 , 'Computers',2);
+
+
+
+
+
+
+
+
