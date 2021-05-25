@@ -53,7 +53,7 @@
                 </form>
                 <div>
                     <p>
-                        <a href="welcomeAdmin"> Back</a>
+                        <a href="welcomeAdmin.jsp"> Back</a>
                     </p>
                     
                 </div>

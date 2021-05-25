@@ -86,7 +86,7 @@
                         <th>Email</th>
                         <th>College</th>
                         <th>Phone</th>
-                        <th>Edit</th>
+                        <!--<th>Edit</th>-->
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -101,7 +101,7 @@
                     <td><%=crs.getString("Email")%></td>
                     <td><%=crs.getString("College")%></td>
                     <td><%=crs.getString("Phone")%></td>
-                    <td><a href="updateStudent.jsp?studentID=<%=studentID%>">Edit</a></td>
+                    <!--<td><a href="updateStudent.jsp?studentID=<%=studentID%>">Edit</a></td>-->
                     <td><a href="deleteStudent.jsp?studentID=<%=studentID%>">Delete</a></td>
                 </tr>
                 <% }
