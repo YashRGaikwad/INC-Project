@@ -36,7 +36,7 @@
             crs.setDate(3, new Date(millis));
             crs.execute();
         }
-      response.sendRedirect("WelcomeStudent.jsp");
+      response.sendRedirect("welcomeStudent.jsp");
     }
     
     else
