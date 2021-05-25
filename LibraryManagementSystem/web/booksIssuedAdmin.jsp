@@ -67,11 +67,11 @@
     <body>
         <div class="navbar">
             <ul>
-                <li><a href="welcomeAdmin.jsp">Books</a></li>
+                 <li><a href="welcomeAdmin.jsp">Books</a></li>
                 <li><a href="studentsList.jsp">Students</a></li>
                 <li><a href="booksIssuedAdmin.jsp">Issued Books</a></li>
-                <li><a href="#">ABCDE</a></li>
-                <li><a href="#">ABCDE</a></li>
+                <li><a href="requestedBooks.jsp">Book Requests</a></li>
+                <li><a href="chart.jsp">Statistics</a></li>
 
             </ul>
         </div>

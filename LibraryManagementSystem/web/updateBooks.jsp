@@ -99,7 +99,7 @@
                     PublisherID: <input type="number" class="form-control" placeholder="Book Publisher ID" name="publisherID" value="<%=crs.getInt("publisherID")%>" style='margin-bottom: 1em'/><br>
                     Genre: <input type="text" class="form-control" placeholder="Book Genre" name="genre" value="<%=crs.getString("genre")%>" style='margin-bottom: 1em'/><br>
                     AuthorID: <input type='number' class="form-control" placeholder="Book Author ID" name='authorID' value="<%=crs.getInt("authorID")%>" style='margin-bottom: 1em'/><br>
-                    Publisher Name: <select id="publisherName" name="publisherName">
+<!--                    Publisher Name: <select id="publisherName" name="publisherName">
                         <% while(crs2.next())
                         {
                          %>
@@ -110,11 +110,10 @@
                         <option value="">Hello</option>
                         <option value="">Hello1</option>
                         <option value="">Hello2</option>
-                    </select>
+                    </select>-->
                 
             <% } %>
             <input type='submit' class="btn btn-info" value='Submit' name="submit">
-            <input type="reset" class="btn btn-warning" value="Reset" name="reset">
             </div>
             </fieldset>
                 </form>

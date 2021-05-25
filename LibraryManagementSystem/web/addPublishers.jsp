@@ -48,13 +48,12 @@
                 <div class="col-sm-4">
                     Publisher Name: <input type="text" class="form-control" placeholder="Book Publisher Name" name="publisherName" value="" style='margin-bottom: 1em'/><br>
             <input type='submit' class="btn btn-info" value='Submit' name="submit">
-            <input type="reset" class="btn btn-warning" value="Reset" name="reset">
             </div>
             </fieldset>
                 </form>
                 <div>
                     <p>
-                        <a href="#"> Back</a>
+                        <a href="welcomeAdmin"> Back</a>
                     </p>
                     
                 </div>

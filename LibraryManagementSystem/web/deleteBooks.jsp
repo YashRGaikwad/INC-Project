@@ -28,5 +28,4 @@
     crs1.execute();
     response.sendRedirect("welcomeAdmin.jsp");
 
-
 %>

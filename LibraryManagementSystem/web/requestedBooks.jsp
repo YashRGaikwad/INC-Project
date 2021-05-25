@@ -1,38 +1,19 @@
 <%-- 
-    Document   : booksIssuedStudent
-    Created on : May 15, 2021, 12:39:58 AM
+    Document   : requestedBooks
+    Created on : May 25, 2021, 8:40:58 PM
     Author     : Yash Gaikwad
 --%>
 
-
 <%@page import="javax.sql.rowset.RowSetProvider"%>
-<%@page import="javax.sql.rowset.CachedRowSet"%>
 <%@page import="javax.sql.rowset.CachedRowSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-
-    try {
-        Class.forName("org.apache.derby.jdbc.ClientDriver");
-    } catch (ClassNotFoundException ex) {
-    }
-    int studentID = (Integer)session.getAttribute("userID");
-    
-    CachedRowSet crs = RowSetProvider.newFactory().createCachedRowSet();
-    crs.setUrl(beans.Singleton.getDbURL());
-    crs.setUsername(beans.Singleton.getUser());
-    crs.setPassword(beans.Singleton.getPass());
-    crs.setCommand("select * from issue_books,students, books where issue_books.ISBN = books.ISBN and issue_books.ID = students.USERID and UserID = ?");
-    crs.setInt(1, studentID);
-    crs.execute();
-
-%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-     <style>
+    <style>
         body{
             margin: 0;
             padding: 0;
@@ -67,36 +48,54 @@
             background: orange;
         }
     </style>
+    
+    
+    <%
+
+    try {
+        Class.forName("org.apache.derby.jdbc.ClientDriver");
+    } catch (ClassNotFoundException ex) {
+    }
+
+    CachedRowSet crs = RowSetProvider.newFactory().createCachedRowSet();
+    crs.setUrl(beans.Singleton.getDbURL());
+    crs.setUsername(beans.Singleton.getUser());
+    crs.setPassword(beans.Singleton.getPass());
+    crs.setCommand("select * from book_requests");
+    crs.execute();
+
+%>
     <body>
         <div class="navbar">
             <ul>
-                <li><a href="welcomeStudent.jsp">Books</a></li>
-                <li><a href="requestBooks.jsp">Request for Books</a></li>
-                <li><a href="booksIssuedStudent.jsp">Issued Books</a></li>
+                 <li><a href="welcomeAdmin.jsp">Books</a></li>
+                <li><a href="studentsList.jsp">Students</a></li>
+                <li><a href="booksIssuedAdmin.jsp">Issued Books</a></li>
+                <li><a href="requestedBooks.jsp">Book Requests</a></li>
+                <li><a href="chart.jsp">Statistics</a></li>
+
             </ul>
-        </div>
-        <div>
+        </div>      
+         <div>
             <table class="table table-responsive table-bordered" width = 100% border="10px">
                 <thead>
                     <tr>
-                        <th>Book Name</th>
-                        <th>Book ISBN</th>
-                        <th>Issue Date</th>
-                        <th>Return Book</th>
+                        <th>StudentID</th>
+                        <th>Title</th>
+                        <th>ISBN</th>
+                        <th>Genre</th>
                     </tr>
                 </thead>
                 <% while (crs.next()) {
-                    int IssueBooksID = crs.getInt("IssueBooksID");
                 %>    
                 <tr>
-                    <td><%=crs.getString("Title")%></td>
+                    <td><%=crs.getInt("StudentID")%></td>
                     <td><%=crs.getString("ISBN")%></td>
-                    <td><%=crs.getString("Issue_date")%></td>
-                    <td><a href="returnBook.jsp?IssueBooksID=<%=IssueBooksID%>">Return Book</a></td>
+                    <td><%=crs.getString("Title")%></td>
+                    <td><%=crs.getString("Genre")%></td>
                 </tr>
                 <% }
                 %>   
-
             </table>
         </div>
         

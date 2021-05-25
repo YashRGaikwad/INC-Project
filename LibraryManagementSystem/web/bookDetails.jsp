@@ -35,12 +35,12 @@
     </head>
     <body>
         <% while(crs.next()) { %>
-        BookID:<%=crs.getInt("BooksID")%>
-        Name:<%=crs.getString("title")%>
-        ISBN:<%=crs.getString("isbn")%>
-        Author Name:<%=crs.getString("firstname")%> <%=crs.getString("lastname")%>
-        Genre:<%=crs.getString("genre")%>
-        Publisher Name:<%=crs.getString("publishername")%>                 
+        BookID:<%=crs.getInt("BooksID")%><br>
+        Name:<%=crs.getString("title")%><br>
+        ISBN:<%=crs.getString("isbn")%><br>
+        Author Name:<%=crs.getString("firstname")%> <%=crs.getString("lastname")%><br>
+        Genre:<%=crs.getString("genre")%><br>
+        Publisher Name:<%=crs.getString("publishername")%><br>           
         <%}%>
     </body>
 </html>

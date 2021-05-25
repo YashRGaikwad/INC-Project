@@ -52,13 +52,12 @@
                     Author First Name: <input type="text" class="form-control" placeholder="First Name" name="authorFName" value="" style='margin-bottom: 1em'/><br>
                     Author Last Name <input type="text" class="form-control" placeholder="Last Name" name="authorLName" value="" style='margin-bottom: 1em'/><br>
             <input type='submit' class="btn btn-info" value='Submit' name="submit">
-            <input type="reset" class="btn btn-warning" value="Reset" name="reset">
             </div>
             </fieldset>
                 </form>
                 <div>
                     <p>
-                        <a href="#"> Back</a>
+                        <a href="welcomeAdmin.jsp"> Back</a>
                     </p>
                     
                 </div>

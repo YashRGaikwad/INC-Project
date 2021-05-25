@@ -64,13 +64,12 @@
                     ISBN: <input type="text" class="form-control" placeholder="Book Title" name="ISBN" value="" style='margin-bottom: 1em'/><br>   
                     Genre: <input type="text" class="form-control" placeholder="Book Title" name="genre" value="" style='margin-bottom: 1em'/><br>   
             <input type='submit' class="btn btn-info" value='Submit' name="submit">
-            <input type="reset" class="btn btn-warning" value="Reset" name="reset">
             </div>
             </fieldset>
                 </form>
                 <div>
                     <p>
-                        <a href="welcomeAdmin.jsp"> Back</a>
+                        <a href="welcomeStudent.jsp"> Back</a>
                     </p>
                     
                 </div>

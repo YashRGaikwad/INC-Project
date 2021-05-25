@@ -29,13 +29,12 @@
                     Genre: <input type="text" class="form-control" placeholder="Book Genre" name="genre" value="" style='margin-bottom: 1em'/><br>
                     Author Name: <input type='text' class="form-control" placeholder="Book Author Name" name='authorName' value="" style='margin-bottom: 1em'/><br>
             <input type='submit' class="btn btn-info" value='Submit' name="submit">
-            <input type="reset" class="btn btn-warning" value="Reset" name="reset">
             </div>
             </fieldset>
                 </form>
                 <div>
                     <p>
-                        <a href="#"> Back</a>
+                        <a href="welcomeAdmin.jsp"> Back</a>
                     </p>
                     
                 </div>
