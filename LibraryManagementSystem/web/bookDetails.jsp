@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-             
+    if (session.getAttribute("userID") != null || session.getAttribute("studentUserID") != null ) {     
          String isbn = request.getParameter("isbn");        
           try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -44,3 +44,7 @@
         <%}%>
     </body>
 </html>
+<% } else {
+        response.sendRedirect("index.jsp");
+    }
+%>

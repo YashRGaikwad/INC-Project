@@ -19,7 +19,7 @@
         <form name="StudentLogin" action="StudentLogin.jsp">
             <input type="submit" value="Student Login" />
         </form>
-        
+        <br>
         <form name="AdminLogin" action="AdminLogin.jsp">
             <input type="submit" value="Admin Login" />
         </form>

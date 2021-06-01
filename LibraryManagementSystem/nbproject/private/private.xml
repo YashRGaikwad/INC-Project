@@ -3,21 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/addBooks.jsp</file>
             <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/requestBooks.jsp</file>
             <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/studentsList.jsp</file>
             <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/issueBooks.jsp</file>
+            <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/logout.jsp</file>
+            <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/addPublishers.jsp</file>
             <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/search.jsp</file>
             <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/requestedBooks.jsp</file>
             <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/booksIssuedStudent.jsp</file>
             <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/booksIssuedAdmin.jsp</file>
+            <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/searchAdmin.jsp</file>
             <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/welcomeStudent.jsp</file>
+            <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/index.jsp</file>
             <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/chart.jsp</file>
+            <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/addAuthors.jsp</file>
             <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/welcomeAdmin.jsp</file>
-            <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/deleteBooks.jsp</file>
-            <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/returnBook.jsp</file>
+            <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/trial.jsp</file>
             <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/updateStudent.jsp</file>
             <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/updateBooks.jsp</file>
-            <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/deleteStudent.jsp</file>
+            <file>file:/C:/Users/yashg/Desktop/Semester%208/INC/Github_repo/INC-Project/LibraryManagementSystem/web/bookDetails.jsp</file>
         </group>
     </open-files>
 </project-private>

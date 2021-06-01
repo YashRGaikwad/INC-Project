@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-<% if (session.getAttribute("userID") != null) {
+<% if (session.getAttribute("studentUserID") != null) {
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         } catch (ClassNotFoundException ex) {
@@ -31,8 +31,13 @@
         <title>JSP Page</title>
         <!--        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
                 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
-    <style>
+<!--    <style>
         body{
             margin: 0;
             padding: 0;
@@ -66,9 +71,9 @@
         .navbar a:hover{
             background: orange;
         }
-    </style>
+    </style>-->
     <body>
-        <div class="navbar">
+<!--        <div class="navbar">
             <ul>
                 <li><a href="welcomeStudent.jsp">Books</a></li>
                 <li><a href="requestBooks.jsp">Request for Books</a></li>
@@ -78,10 +83,32 @@
                     <button type="submit">Search</button>
                 </form>
             </ul>
+        </div>-->
+ <nav class="navbar navbar-expand-lg navbar navbar-dark bg-info">
+        <a href="welcomeStudent.jsp" class="navbar-brand">Online Library</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse5">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse5">
+            <div class="navbar-nav">
+                <a href="welcomeStudent.jsp" class="nav-item nav-link active">Books</a>
+                <a href="requestBooks.jsp" class="nav-item nav-link">Request Book</a>
+                <a href="booksIssuedStudent.jsp" class="nav-item nav-link">Issued Books</a>
+                <a href="updateStudent.jsp" class="nav-item nav-link">Profile</a>
+            </div>
+            <form action="search.jsp" class="form-inline ml-auto">
+                <input type="text" class="form-control mr-sm-2" placeholder="Search" name="searchText">
+                <button type="submit" class="btn btn-outline-light">Search</button>
+            </form>
+            <div class="nav-item">
+                <a class="nav-link btn btn-primary text-white" style="margin:10px" type="button" href="logout.jsp">Logout</a>                  
+                </div>
         </div>
-        <div>
+    </nav>
+<div class="table-responsive">
             <form action="issueBooks.jsp">
-                <table class="table table-responsive table-bordered" width = 100% border="10px">
+                <table class="table table-bordered m-10px" width = 100% border="10px">
                     <thead>
                         <tr>
                             <th>Books</th>
@@ -101,14 +128,13 @@
                         <td><%=crs.getString("ISBN")%></td>
                         <td><%=crs.getString("Genre")%></td>
                         <!--<td><a href="issueBooks.jsp?isbn=<%=isbn%>">Issue</a></td>-->
-                        <td><input type="checkbox" name="selectedBooks" value="<%=crs.getString("ISBN")%>">Issue</td>
+                        <td><input type="checkbox" name="selectedBooks" value="<%=crs.getString("ISBN")%>"> Issue</td>
                     </tr>
                     <% }
                     %>   
 
                 </table>
                 <input type='submit' class="btn btn-info" value='Submit' name="submit">
-                <input type="reset" class="btn btn-warning" value="Reset" name="reset">
             </form>
         </div>
         

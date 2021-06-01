@@ -1,35 +1,38 @@
 <%-- 
-    Document   : studentsList
-    Created on : May 11, 2021, 1:19:32 AM
+    Document   : searchAdmin
+    Created on : Jun 1, 2021, 9:40:18 AM
     Author     : Yash Gaikwad
 --%>
 
 <%@page import="javax.sql.rowset.RowSetProvider"%>
 <%@page import="javax.sql.rowset.CachedRowSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-
+<!DOCTYPE html>
 <%
      if (session.getAttribute("userID") != null) {
+    String searchText = request.getParameter("searchText");
     try {
         Class.forName("org.apache.derby.jdbc.ClientDriver");
     } catch (ClassNotFoundException ex) {
     }
 
-    CachedRowSet crs = RowSetProvider.newFactory().createCachedRowSet();
-    crs.setUrl(beans.Singleton.getDbURL());
-    crs.setUsername(beans.Singleton.getUser());
-    crs.setPassword(beans.Singleton.getPass());
-    crs.setCommand("select * from students");
-    crs.execute();
+    CachedRowSet crs1 = RowSetProvider.newFactory().createCachedRowSet();
+    crs1.setUrl(beans.Singleton.getDbURL());
+    crs1.setUsername(beans.Singleton.getUser());
+    crs1.setPassword(beans.Singleton.getPass());
 
+    crs1.setCommand("select * from books where title like '%" + searchText + "%'");
+    crs1.execute();
+    
+    if(crs1.next())
+{
+//        crs1.setCommand("select * from books");
 %>
 
-<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title></title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -72,18 +75,18 @@
         }
     </style>-->
     <body>
-<!--          <div class="navbar">
+<!--        <div class="navbar">
             <ul>
-                <li><a href="welcomeAdmin.jsp">Books</a></li>
-                <li><a href="studentsList.jsp">Students</a></li>
-                <li><a href="booksIssuedAdmin.jsp">Issued Books</a></li>
-                <li><a href="requestedBooks.jsp">Book Requests</a></li>
-                <li><a href="chart.jsp">Statistics</a></li>
-
+                <li><a href="welcomeStudent.jsp">Books</a></li>
+                <li><a href="requestBooks.jsp">Request for Books</a></li>
+                <li><a href="booksIssuedStudent.jsp">Issued Books</a></li>
+                <form action="search.jsp">
+                    <input type="text" placeholder="Search.." name="searchText"/>
+                    <button type="submit">Search</button>
+                </form>
             </ul>
         </div>-->
-
-       <nav class="navbar navbar-expand-lg navbar navbar-dark bg-info">
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-info">
         <a href="welcomeAdmin.jsp" class="navbar-brand">Online Library</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse5">
             <span class="navbar-toggler-icon"></span>
@@ -106,51 +109,58 @@
                         <a class="dropdown-item" href="addPublishers.jsp">Add Publishers</a>
                     </div>
             </div>
-            <form action="search.jsp" class="form-inline ml-auto" hidden>
+            <form action="searchAdmin.jsp" class="form-inline ml-auto">
                 <input type="text" class="form-control mr-sm-2" placeholder="Search" name="searchText">
                 <button type="submit" class="btn btn-outline-light">Search</button>
             </form>
-            <div class="nav-item">
-                <a class="nav-link btn btn-primary text-white" style="margin:10px" type="button" href="logout.jsp">Logout</a>                  
-                </div>
         </div>
     </nav>
 
-       <div class="table-responsive">
+<!--        <div>
+            <ul>
+                <li><a href="addBooks.jsp">Add Books</a></li>
+                <li><a href="addAuthors.jsp">Add Authors</a></li>
+                <li><a href="addPublishers.jsp">Add Publishers</a></li>
+            </ul>
+        </div>-->
+
+
+        <div class="table-responsive">
             <table class="table table-bordered m-10px" width = 100% border="10px">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>College</th>
-                        <th>Phone</th>
-                        <!--<th>Edit</th>-->
+                        <th>Books</th>
+                        <th>ISBN</th>
+                        <th>Genre</th>
+                        <th>Edit</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
-                <% while (crs.next()) {
+                <% while (crs1.next()) {
 
-                        int studentID = crs.getInt("UserID");
-
+                        String isbn = crs1.getString("ISBN");
+    //            int booksID = crs.getInt("booksID");
 
                 %>    
                 <tr>
-                    <td><%=crs.getString("Name")%></td>
-                    <td><%=crs.getString("Email")%></td>
-                    <td><%=crs.getString("College")%></td>
-                    <td><%=crs.getString("Phone")%></td>
-                    <!--<td><a href="updateStudent.jsp?studentID=<%=studentID%>">Edit</a></td>-->
-                    <td><a href="deleteStudent.jsp?studentID=<%=studentID%>">Delete</a></td>
+                    <td><%=crs1.getString("Title")%><p><a href="bookDetails.jsp?isbn=<%=isbn%>">See more...</a></p></td>
+                    <td><%=crs1.getString("ISBN")%></td>
+                    <td><%=crs1.getString("Genre")%></td>
+                    <td><a href="updateBooks.jsp?isbn=<%=isbn%>">Edit</a></td>
+                    <td><a href="deleteBooks.jsp?isbn=<%=isbn%>">Delete</a></td>
                 </tr>
                 <% }
                 %>   
+
             </table>
         </div>
+<% } 
+else{
+response.sendRedirect("index.jsp");
+}
+
+%>
+
 
     </body>
 </html>
-
-<% } else {
-        response.sendRedirect("index.jsp");
-    }
-%>

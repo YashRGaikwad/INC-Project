@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 
 <%
+     if (session.getAttribute("userID") != null) {
 
     try {
         Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -22,14 +23,21 @@
     crs.setPassword(beans.Singleton.getPass());
     crs.setCommand("select * from issue_books,students, books where issue_books.ISBN = books.ISBN and issue_books.ID = students.USERID ");
     crs.execute();
-
+    if(crs.next())
+    {
+        
 %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
-    <style>
+<!--    <style>
         body{
             margin: 0;
             padding: 0;
@@ -63,9 +71,9 @@
         .navbar a:hover{
             background: orange;
         }
-    </style>
+    </style>-->
     <body>
-        <div class="navbar">
+<!--        <div class="navbar">
             <ul>
                  <li><a href="welcomeAdmin.jsp">Books</a></li>
                 <li><a href="studentsList.jsp">Students</a></li>
@@ -74,9 +82,42 @@
                 <li><a href="chart.jsp">Statistics</a></li>
 
             </ul>
+        </div>-->
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-info">
+        <a href="welcomeAdmin.jsp" class="navbar-brand">Online Library</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse5">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse5">
+            <div class="navbar-nav">
+                <a href="welcomeAdmin.jsp" class="nav-item nav-link active">Books</a>
+                <a href="studentsList.jsp" class="nav-item nav-link">Students</a>
+                <a href="booksIssuedAdmin.jsp" class="nav-item nav-link">Issued Books</a>
+                <a href="requestedBooks.jsp" class="nav-item nav-link">Book Requests</a>
+                <a href="chart.jsp" class="nav-item nav-link">Statistics</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Manage
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="addBooks.jsp">Add Books</a>
+                        <a class="dropdown-item" href="addAuthors.jsp">Add Authors</a>
+                        <a class="dropdown-item" href="addPublishers.jsp">Add Publishers</a>
+                    </div>
+            </div>
+            <form action="search.jsp" class="form-inline ml-auto" hidden>
+                <input type="text" class="form-control mr-sm-2" placeholder="Search" name="searchText">
+                <button type="submit" class="btn btn-outline-light">Search</button>
+            </form>
+            <div class="nav-item">
+                <a class="nav-link btn btn-primary text-white" style="margin:10px" type="button" href="logout.jsp">Logout</a>                  
+                </div>
         </div>
-        <div>
-            <table class="table table-responsive table-bordered" width = 100% border="10px">
+    </nav>
+
+       <div class="table-responsive">
+            <table class="table table-bordered m-10px" width = 100% border="10px">
                 <thead>
                     <tr>
                         <th>Student ID</th>
@@ -102,3 +143,16 @@
         </div>
     </body>
 </html>
+
+<%}
+else { %>
+
+<script>
+    alert("No books have been issued by students yet!");
+    window.location= "welcomeAdmin.jsp";
+</script>
+
+<% }} else {
+        response.sendRedirect("index.jsp");
+    }
+%>

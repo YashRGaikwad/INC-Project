@@ -10,30 +10,34 @@
 <!DOCTYPE html>
 
 <%
-     if(request.getParameter("submit") != null)
-     {
-         
-         String firstName = request.getParameter("authorFName");
-         String lastName = request.getParameter("authorLName");
- 
-          try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-        } catch (ClassNotFoundException ex) {
-        }
-        
+    if (session.getAttribute("userID") != null) {
+        if (request.getParameter("submit") != null) {
+
+            String firstName = request.getParameter("authorFName");
+            String lastName = request.getParameter("authorLName");
+
+            try {
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
+            } catch (ClassNotFoundException ex) {
+            }
+
             CachedRowSet crs = RowSetProvider.newFactory().createCachedRowSet();
             crs.setUrl(beans.Singleton.getDbURL());
             crs.setUsername(beans.Singleton.getUser());
             crs.setPassword(beans.Singleton.getPass());
-            
-           crs.setCommand("Insert into Authors (firstName,lastName) values (?,?)");
-           crs.setString(1, firstName);
-           crs.setString(2, lastName);
-           crs.execute();
+
+            crs.setCommand("Insert into Authors (firstName,lastName) values (?,?)");
+            crs.setString(1, firstName);
+            crs.setString(2, lastName);
+            crs.execute(); %>
+<script>
+    alert("Author has been SUCCESSFULLY added !");
+    window.location = "welcomeAdmin.jsp";
+</script>
 //           response.sendRedirect("welcomeAdmin.jsp");
-     }
-     
-    %>
+<% }
+
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -41,26 +45,32 @@
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
+    <body> 
         <h1>Add Authors</h1>
-        
+
         <form action="#">
-        <fieldset>
-            
+            <fieldset>
+
                 <legend>Book details</legend>
                 <div class="col-sm-4">
-                    Author First Name: <input type="text" class="form-control" placeholder="First Name" name="authorFName" value="" style='margin-bottom: 1em'/><br>
-                    Author Last Name <input type="text" class="form-control" placeholder="Last Name" name="authorLName" value="" style='margin-bottom: 1em'/><br>
-            <input type='submit' class="btn btn-info" value='Submit' name="submit">
-            </div>
-            </fieldset>
-                </form>
-                <div>
-                    <p>
-                        <a href="welcomeAdmin.jsp"> Back</a>
-                    </p>
-                    
+                    Author First Name: <input type="text" class="form-control" placeholder="First Name" name="authorFName" value="" style='margin-bottom: 1em' required/><br>
+                    Author Last Name <input type="text" class="form-control" placeholder="Last Name" name="authorLName" value="" style='margin-bottom: 1em' required/><br>
+                    <input type='submit' class="btn btn-info" value='Submit' name="submit">
                 </div>
-          
+            </fieldset>
+        </form> <br>
+        <div>
+            <p>
+                <a href="welcomeAdmin.jsp"> Back</a>
+            </p>
+
+        </div>
+
     </body>
 </html>
+
+
+<% } else {
+        response.sendRedirect("index.jsp");
+    }
+%>

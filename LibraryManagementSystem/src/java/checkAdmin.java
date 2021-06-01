@@ -55,14 +55,14 @@ public class checkAdmin extends HttpServlet {
                 out.println("<title>Servlet validate</title>");
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>Yash " + request.getContextPath() + "</h1>");
+//                out.println("<h1>Yash " + request.getContextPath() + "</h1>");
                 out.println("</body>");
                 out.println("</html>");
                 
                 String user = request.getParameter("username");
                 String password = request.getParameter("password");
-                out.println("<p>"+user+"</p>");
-                out.println("<p>"+password+"</p>");
+//                out.println("<p>"+user+"</p>");
+//                out.println("<p>"+password+"</p>");
 
 
                 String s = new String(password);
@@ -71,7 +71,7 @@ public class checkAdmin extends HttpServlet {
                 byte[] thedigest = md.digest(bytesOfMessage);
                 BASE64Encoder encoder = new BASE64Encoder();
                 String hashcode = encoder.encode(thedigest);
-                System.out.println(encoder.encode(thedigest));
+//                System.out.println(encoder.encode(thedigest));
                 out.println("<p>"+encoder.encode(thedigest)+"</p>");
 
                 crs.setString(1, user);

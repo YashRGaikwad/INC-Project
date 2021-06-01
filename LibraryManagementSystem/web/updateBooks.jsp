@@ -9,6 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    if (session.getAttribute("userID") != null) {
      if(request.getParameter("submit") != null)
      {
          
@@ -36,9 +37,13 @@
            crs1.setString(3, genre);
            crs1.setInt(4, authorID);
            crs1.setString(5, isbn);
-           crs1.execute();
+           crs1.execute();%>
+            <script>
+    alert("Successfully Updated!");
+    window.location= "welcomeAdmin.jsp";
+</script>
 //           response.sendRedirect("welcomeAdmin.jsp");
-     }
+     <%}
      
     %>
 
@@ -116,7 +121,7 @@
             <input type='submit' class="btn btn-info" value='Submit' name="submit">
             </div>
             </fieldset>
-                </form>
+        </form><br>
                 <div>
                     <p>
                         <a href="welcomeAdmin.jsp"> Back</a>
@@ -126,3 +131,8 @@
           
     </body>
 </html>
+
+<% } else {
+        response.sendRedirect("index.jsp");
+    }
+%>

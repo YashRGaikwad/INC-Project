@@ -11,6 +11,7 @@
 
 
 <%
+    if (session.getAttribute("userID") != null) {
 
     String isbn = request.getParameter("isbn");
     try {
@@ -26,6 +27,16 @@
     crs1.setCommand("Delete from books where isbn=?");
     crs1.setString(1, isbn);
     crs1.execute();
-    response.sendRedirect("welcomeAdmin.jsp");
+//    response.sendRedirect("welcomeAdmin.jsp");
 
+%>
+
+<script>
+    alert("Book Deleted");
+    window.location= "welcomeAdmin.jsp";
+</script>
+
+<% } else {
+        response.sendRedirect("index.jsp");
+    }
 %>

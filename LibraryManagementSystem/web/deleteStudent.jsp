@@ -11,7 +11,7 @@
 
 
 <%
-
+if (session.getAttribute("userID") != null) {
     int studentID = Integer.valueOf(request.getParameter("studentID"));
     try {
         Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -26,8 +26,17 @@
     crs1.setCommand("Delete from students where userID=?");
     crs1.setInt(1, studentID);
     crs1.execute();
-    response.sendRedirect("studentsList.jsp");
+//    response.sendRedirect("studentsList.jsp");
 
 
 %>
 
+<script>
+    alert("Student Deleted");
+    window.location= "studentsList.jsp";
+</script>
+
+<% } else {
+        response.sendRedirect("index.jsp");
+    }
+%>

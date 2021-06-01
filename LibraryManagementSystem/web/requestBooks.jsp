@@ -9,40 +9,41 @@
 <%@page import="javax.sql.rowset.CachedRowSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<% if (session.getAttribute("userID")!=null)
-    {
+<% if (session.getAttribute("studentUserID") != null) {
 
-     if(request.getParameter("submit") != null)
-     {
-         
-         String isbn = request.getParameter("ISBN");
-         String title = request.getParameter("title");
-         String genre = request.getParameter("genre");
-         
-        
-          try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-        } catch (ClassNotFoundException ex) {
-        }
-        
+        if (request.getParameter("submit") != null) {
+
+            String isbn = request.getParameter("ISBN");
+            String title = request.getParameter("title");
+            String genre = request.getParameter("genre");
+
+            try {
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
+            } catch (ClassNotFoundException ex) {
+            }
 
             CachedRowSet crs1 = RowSetProvider.newFactory().createCachedRowSet();
             crs1.setUrl(beans.Singleton.getDbURL());
             crs1.setUsername(beans.Singleton.getUser());
             crs1.setPassword(beans.Singleton.getPass());
-            
-            int studentID = (Integer)session.getAttribute("userID");
-            
-           crs1.setCommand("Insert into book_requests (studentID,title,isbn,genre) values (?,?,?,?)");
-           crs1.setInt(1,studentID);
-           crs1.setString(2, title);
-           crs1.setString(3, isbn);
-           crs1.setString(4, genre);
-           crs1.execute();
+
+            int studentID = (Integer) session.getAttribute("studentUserID");
+
+            crs1.setCommand("Insert into book_requests (studentID,title,isbn,genre) values (?,?,?,?)");
+            crs1.setInt(1, studentID);
+            crs1.setString(2, title);
+            crs1.setString(3, isbn);
+            crs1.setString(4, genre);
+            crs1.execute();
+%>
+<script>
+    alert("Request has been SUCCESSFULLY placed!");
+    window.location = "welcomeStudent.jsp";
+</script>
 //           response.sendRedirect("welcomeAdmin.jsp");
-     }
-     
-    %>
+<% }
+
+%>
 
 <!DOCTYPE html>
 <html>
@@ -54,31 +55,30 @@
     </head>
     <body>
         <h1>Request for Books</h1>
-        
+
         <form action="#">
-        <fieldset>
-                
+            <fieldset>
+
                 <legend>Book details</legend>
                 <div class="col-sm-4">
-                    Book Title: <input type="text" class="form-control" placeholder="Book Title" name="title" value="" style='margin-bottom: 1em'/><br>   
-                    ISBN: <input type="text" class="form-control" placeholder="Book Title" name="ISBN" value="" style='margin-bottom: 1em'/><br>   
-                    Genre: <input type="text" class="form-control" placeholder="Book Title" name="genre" value="" style='margin-bottom: 1em'/><br>   
-            <input type='submit' class="btn btn-info" value='Submit' name="submit">
-            </div>
-            </fieldset>
-                </form>
-                <div>
-                    <p>
-                        <a href="welcomeStudent.jsp"> Back</a>
-                    </p>
-                    
+                    Book Title: <input type="text" class="form-control" placeholder="Book Title" name="title" value="" style='margin-bottom: 1em' required/><br>   
+                    ISBN: <input type="text" class="form-control" placeholder="Book Title" name="ISBN" value="" style='margin-bottom: 1em' required/><br>   
+                    Genre: <input type="text" class="form-control" placeholder="Book Title" name="genre" value="" style='margin-bottom: 1em' required/><br>   
+                    <input type='submit' class="btn btn-info" name="submit">
                 </div>
-        
-        <% } 
-else{
-response.sendRedirect("index.jsp");
-}
-%>
-          
+            </fieldset>
+        </form><br>
+        <div>
+            <p>
+                <a href="welcomeStudent.jsp"> Back</a>
+            </p>
+
+        </div>
+
     </body>
 </html>
+
+<% } else {
+        response.sendRedirect("index.jsp");
+    }
+%>
